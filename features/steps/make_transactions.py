@@ -62,7 +62,7 @@ def assert_balance_increased(context, amount):
         response = requests.get(f'{URL}/balance/{context.account_number}')
 
         if response.status_code == 404:
-            time.sleep(1)
+            time.sleep(10)
             retries = retries - 1
             continue
 
@@ -72,6 +72,6 @@ def assert_balance_increased(context, amount):
         body = response.json()
         balance = body['clearedBalance']
         retries = retries - 1
-        time.sleep(1)
+        time.sleep(10)
 
     assert balance == amount, f'{balance} != {amount}'
